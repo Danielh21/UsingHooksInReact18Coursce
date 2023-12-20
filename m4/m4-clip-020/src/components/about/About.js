@@ -1,5 +1,5 @@
-import { ThemeContext } from "../../App";
 import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function About() {
   const darkTheme = useContext(ThemeContext);
