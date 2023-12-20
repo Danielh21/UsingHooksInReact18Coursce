@@ -1,5 +1,6 @@
 import SpeakerLine from "./SpeakerLine";
-import {useEffect, useState, useReducer} from 'react'
+import {useEffect, useState, useReducer, useContext} from 'react'
+import { ThemeContext } from "../../App";
 import axios from "axios";
 
 function List({state, dispatch}) {
@@ -110,7 +111,7 @@ const SpeakerList = () => {
 
   if(state.loading) return <div>Loading....</div>
 
-  const darkTheme = false;
+  const darkTheme = useContext(ThemeContext);
   return (
     <div className={darkTheme ? "theme-dark" : "theme-light"}>
       <List state={state} dispatch={dispatch} />
