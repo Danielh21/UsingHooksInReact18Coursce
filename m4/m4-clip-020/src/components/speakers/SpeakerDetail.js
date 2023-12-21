@@ -1,3 +1,5 @@
+import { SpeakerModalProvider } from "../contexts/SpeakerModalContext";
+import SpeakerModal from "../speakerModal/SpeakerModal";
 import DeleteSpeakerButton from "./DeleteSpeakerButton";
 import EditSpeakerDialog from "./EditSpeakerDialog";
 import FavoriteSpeakerToggle from "./FavoriteSpeakerToggle";
@@ -10,7 +12,8 @@ export default function SpeakerDetail({ speakerRec, showDetails }) {
     },
   };
   return (
-    <>
+    <SpeakerModalProvider>
+      {speakerRec && <SpeakerModal />}
       <div className="col-xl-6 col-md-12">
         <div className="card border-0">
           <div className="row g-0">
@@ -69,6 +72,6 @@ export default function SpeakerDetail({ speakerRec, showDetails }) {
           </div>
         </div>
       </div>
-    </>
+      </SpeakerModalProvider>
   );
 }
