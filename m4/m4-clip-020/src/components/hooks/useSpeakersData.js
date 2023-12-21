@@ -1,4 +1,4 @@
-import useGeneralizedCrudMethods from "./useGeneralizedCrudMethods";
+import useGeneralizedCrudMethods from "./useGeneralizedGrudMethods";
 
 function useSpeakersData() {
   const url = "/api/speakers";
