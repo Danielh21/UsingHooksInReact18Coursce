@@ -1,5 +1,5 @@
 import SpeakerLine from "./SpeakerLine";
-import {useEffect, useState, useReducer, useContext} from 'react'
+import {useEffect, useState, useReducer, useContext, useCallback} from 'react'
 import axios from "axios";
 import { ThemeContext } from "../contexts/ThemeContext";
 
@@ -57,7 +57,11 @@ function List({state, dispatch}) {
               key={speakerRec.id}
               speakerRec={speakerRec}
               updating={updatingId === speakerRec?.id ? updatingId : 0}
-              toggleFavoriteSpeaker={() => toggleFavoriteSpeaker(speakerRec)}
+              toggleFavoriteSpeaker={
+                useCallback(
+                 () => toggleFavoriteSpeaker(speakerRec),
+                  [speakerRec.favorite])
+                }
               highlight={highlight}
             />
           );
@@ -108,10 +112,10 @@ const SpeakerList = () => {
     });
     setSpeakers(speakUpdated);
   }
+  const darkTheme = useContext(ThemeContext);
 
   if(state.loading) return <div>Loading....</div>
 
-  const darkTheme = useContext(ThemeContext);
   return (
     <div className={darkTheme ? "theme-dark" : "theme-light"}>
       <List state={state} dispatch={dispatch} />
